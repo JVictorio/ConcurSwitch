@@ -1,0 +1,90 @@
+{
+  "appName": "travel",
+  "environment": "BAT",
+  "server": "http://localhost:8080",
+  "tests": [
+    {
+      "url": "travel_utest1"
+    }
+  ]
+}
+{
+  "appName": "travel",
+  "environment": "RAQA1",
+  "server": "http://localhost:8080",
+  "tests": [
+    {
+      "url": "travel_utest1"
+    },
+    {
+      "url": "travel_utest2"
+    },
+    { "url": "travel_itest1"},
+    { "url": "travel_itest2"}
+  ]
+}
+{
+  "appName": "travel",
+  "environment": "RAQA2",
+  "server": "http://localhost:8080",
+  "tests": [
+    { "url": "travel_itest1"},
+    { "url": "travel_itest2"}
+  ]
+}
+{
+  "appName": "travel",
+  "environment": "STAGE",
+  "server": "http://localhost:8080",
+  "tests": [
+    { "url": "travel_itest1"},
+    { "url": "travel_itest2"},
+    {"url": "travel_stest1"},
+    {"url" : "travel_stest2"}
+  ]
+}
+{
+  "appName": "expense",
+  "environment": "BAT",
+  "server": "http://localhost:8080",
+  "tests": [
+    {
+      "url": "expense_utest1"
+    }
+  ]
+}
+{
+  "appName": "expense",
+  "environment": "RAQA1",
+  "server": "http://localhost:8080",
+  "tests": [
+    {
+      "url": "expense_utest1"
+    },
+    {
+      "url": "expense_utest2"
+    },
+    { "url": "expense_itest1"},
+    { "url": "expense_itest2"}
+  ]
+}
+{
+  "appName": "expense",
+  "environment": "RAQA2",
+  "server": "http://localhost:8080",
+  "tests": [
+    { "url": "expense_itest1"},
+    { "url": "expense_itest2"}
+  ]
+}
+{
+  "appName": "expensetravel",
+  "environment": "STAGE",
+  "server": "http://localhost:8080",
+  "tests": [
+    { "url": "expense_itest1"},
+    { "url": "expense_itest2"},
+    {"url": "expense_stest1"},
+    {"url" : "expense_stest2"}
+  ]
+}
