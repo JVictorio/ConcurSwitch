@@ -9,7 +9,7 @@ import java.util.List;
  * Created by JVictorio on 1/8/16.
  */
 @Document(collection = "appjenkins")
-public class Jenkins {
+public class Application {
 
     @Id
     private String id;
@@ -17,18 +17,18 @@ public class Jenkins {
     private String appName;
     private String environment;
     private String server;
-    private List<Tests> tests;
+    private List<AppTest> tests;
 
-    public Jenkins() {
+    public Application() {
     }
 
-    public Jenkins(String appName, String environment, String server) {
+    public Application(String appName, String environment, String server) {
         this.appName = appName;
         this.environment = environment;
         this.server = server;
     }
 
-    public Jenkins(String appName, String environment, String server, List<Tests> tests) {
+    public Application(String appName, String environment, String server, List<AppTest> tests) {
         this.appName = appName;
         this.environment = environment;
         this.server = server;
@@ -63,17 +63,17 @@ public class Jenkins {
         this.server = server;
     }
 
-    public List<Tests> getTests() {
+    public List<AppTest> getTests() {
         return tests;
     }
 
-    public void setTests(List<Tests> tests) {
+    public void setTests(List<AppTest> tests) {
         this.tests = tests;
     }
 
     @Override
     public String toString() {
-        return String.format("Jenkins[id=%s, appName='%s', environment='%s', server='%s']",
+        return String.format("Application[id=%s, appName='%s', environment='%s', server='%s']",
             id, appName, environment, server);
 
     }

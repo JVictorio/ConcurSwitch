@@ -3,14 +3,14 @@ package com.concur.model;
 /**
  * Created by JVictorio on 1/8/16.
  */
-public class Tests {
+public class AppTest {
 
     private String url;
 
-    public Tests() {
+    public AppTest() {
     }
 
-    public Tests(String url) {
+    public AppTest(String url) {
         this.url = url;
     }
 
