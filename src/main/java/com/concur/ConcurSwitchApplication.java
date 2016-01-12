@@ -8,16 +8,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ConcurSwitchApplication implements CommandLineRunner {
+public class ConcurSwitchApplication {
 
 	@Autowired
 	private ApplicationRepository applicationRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ConcurSwitchApplication.class, args);
-		System.exit(0);
 	}
 
+	/*
 	@Override
 	public void run(String... args) throws Exception {
 		// fetch all customers
@@ -52,4 +52,5 @@ public class ConcurSwitchApplication implements CommandLineRunner {
 			System.out.println(application);
 		}
 	}
+	*/
 }

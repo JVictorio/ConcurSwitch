@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property resource="logback.default.properties"/>
+    <!--<property file="/etc/tap-ted/logback.properties" />-->
+
+    <!-- Note; in order for this to work all 3 jars must be in the classpath:
+        logback-classic, logback-core, and slf4j-api -->
+
+    <logger name="${LOGGER_NAME}" level="DEBUG"/>
+
+    <!-- Markers add a new dimension with infinite possible values for processing
+        log statements compared to five values, namely ERROR, WARN, INFO, DEBUG and
+        TRACE, allowed by levels. At present time, only logback supports marker data.
+        However nothing prevents other logging frameworks from making use of marker
+        data. -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- xThrowable means exceptions root cause first -->
+            <pattern>
+                ${PATTERN_TIME_AND_CONTEXT}${PATTERN_DETAIL}
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ARCHIVE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- By setting the file property you can decouple the location of the
+            active log file and the location of the archived log files. The logging output
+            will be targeted into the file specified by the file property. It follows
+            that the name of the active log file will not change over time. However,
+            if you choose to omit the file property, then the active file will be computed
+            anew for each period based on the value of fileNamePattern. -->
+        <file>${LOG_PATH}/${LOG_PREFIX}.${LOG_SUFFIX}</file>
+        <!-- If the file already exists, it is either appended to, or truncated
+            depending on the value of the append property. If true, events are appended
+            at the end of an existing file. Otherwise, if append is false, any existing
+            file is truncated. The append option is set to true by default. -->
+        <append>${APPEND}</append>
+        <!--<immediateFlush>${IMMEDIATE_FLUSH}</immediateFlush>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- yyyyMMdd means a daily roll-over filename -->
+            <fileNamePattern>${LOG_PATH}/${LOG_PREFIX}.%d{yyyyMMdd}.%i.${LOG_SUFFIX}</fileNamePattern>
+            <!-- keep LOG_MAX_HISTORY_IN_DAYS days' worth of history -->
+            <maxHistory>${LOG_MAX_HISTORY_IN_DAYS}</maxHistory>
+            <!-- If set to true, archive removal will be executed on appender start
+                up. By default this property is set to false. Archive removal is normally
+                performed during roll over. However, some applications may not live long
+                enough for roll over to be triggered. It follows that for such short-lived
+                applications archive removal may never get a chance to execute. By setting
+                cleanHistoryOnStart to true, archive removal is performed at appender start
+                up. -->
+            <cleanHistoryOnStart>${LOG_ROLLOVER_ON_STARTUP}</cleanHistoryOnStart>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${LOG_MAX_FILE_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>
+                ${PATTERN_TIME_AND_CONTEXT}${PATTERN_DETAIL}
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="ERROR"/>
+    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.apache" level="ERROR"/>
+
+    <root level="${ROOT_LEVEL}">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ARCHIVE"/>
+    </root>
+
+</configuration>
